@@ -14,11 +14,20 @@ void addToList(List* head, int number){
 
 void addToPosition(List* head, int newNumber, int position){
     List* p = head;
-    //std::cerr << p << " " << p->number << std::endl;
-    for(int i = 0; i < position; i++){
+    int i = 0;
+    while (i <= position) {
+        if (p == nullptr) {
+            break;
+        }
+        if (i == position) {
+            List* z = new List;
+            z->next = p->next;
+            p->next = z;
+            z->number = newNumber;
+        }
         p = p->next;
+        i++;
     }
-    p->number = newNumber;
 }
 
 void printList(List* head){
@@ -40,7 +49,7 @@ int main() {
         addToList(head, i);
     }
 
-    addToPosition(head, -1, 2);
+    addToPosition(head, -1, 0);
 
     printList(head);
     return 0;
