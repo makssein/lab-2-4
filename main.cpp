@@ -32,6 +32,17 @@ void addToPosition(List* head, int newNumber, int position){
     }
 }
 
+void clear(List* head){
+    List* tmp;
+    List* p = head->next;
+    while (p != nullptr){
+        tmp = p;
+        p = p->next;
+        delete tmp;
+    }
+}
+
+
 void printList(List* head){
     List* p = head->next;
     while (p != nullptr)
@@ -74,5 +85,6 @@ int main() {
     //конец массива
 
     //printList(head);
+    clear(head);
     return 0;
 }
