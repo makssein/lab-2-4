@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include "timer.hpp"
 
 struct List{
     List* next;
@@ -44,13 +46,33 @@ int main() {
     List* head = new List;
     head->next = nullptr;
 
+    std::vector<int> mas;
 
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 10000; i++){
         addToList(head, i);
     }
+    Timer listTimer;
+    for(int i = 0; i < 1000; i++){
+        addToPosition(head, i*i, i);
+    }
+    std::cout << "Время, затраченное на обработку листа: " << listTimer.elapsed() << " секунд" << std::endl;
 
-    addToPosition(head, -1, 0);
 
-    printList(head);
+    //массив
+    for(int i = 0; i < 10000; i++){
+        mas.push_back(i);
+    }
+    auto iter = mas.cbegin();
+    Timer masTimer;
+    for(int i = 0; i < 1000; i++){
+        mas.emplace(iter + i,i);
+    }
+    std::cout << "Время, затраченное на обработку массива: " << listTimer.elapsed() << " секунд" <<  std::endl;
+
+    /*for (auto const &element: mas)
+        std::cout << element << ' '; */
+    //конец массива
+
+    //printList(head);
     return 0;
 }
