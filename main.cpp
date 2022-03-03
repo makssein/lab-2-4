@@ -42,7 +42,6 @@ void clear(List* head){
     }
 }
 
-
 void printList(List* head){
     List* p = head->next;
     while (p != nullptr)
@@ -86,5 +85,6 @@ int main() {
 
     //printList(head);
     clear(head);
+    delete head;
     return 0;
 }
